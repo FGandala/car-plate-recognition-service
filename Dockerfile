@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 #Cópia as blibliotecas
-COPY requirements.txt
+COPY requirements.txt .
 
 #Instala as blibliotecas
 RUN pip install --no-cache-dir -r requirements.txt
