@@ -1,0 +1,38 @@
+
+{
+    "name": "car-plate-recognition-service - Dev Env",
+
+
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
+
+    //Mapeia a porta do contêiner para a  máquina local, 
+    "forwardPorts": [8001],
+    "portsAttributes": {
+        "8001": {
+            "label": "FastAPI App",
+            "onAutoForward": "openBrowser"
+        }
+    },
+
+   //Personaliza o vscode dentro do container
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.pylintEnabled": true,
+                "python.linting.enabled": true
+            },
+            // Instala extensões essenciais automaticamente dentro do contêiner.
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ]
+        }
+    },
+
+    // Mapeia a pasta do seu projeto local para a pasta /app dentro do contêiner.
+    "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+    "workspaceFolder": "/app"
+}
