@@ -8,7 +8,12 @@ WORKDIR /app
 COPY requirements.txt .
 
 #Instala o git 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    gnupg2 \
+    gpg-agent \
+    --no-install-recommends
 
 #Instala as blibliotecas
 RUN pip install --no-cache-dir -r requirements.txt

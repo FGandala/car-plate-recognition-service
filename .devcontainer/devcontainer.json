@@ -7,12 +7,7 @@
         "dockerfile": "../Dockerfile"
     },
 
-    //Configurações para permitir o uso do git
-    "mounts": [
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
-        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
-    ],
-
+  
     //Mapeia a porta do contêiner para a  máquina local, 
     "forwardPorts": [8001],
     "portsAttributes": {
