@@ -4,7 +4,7 @@
 
 
     "build": {
-        "dockerfile": "../Dockerfile"
+        "dockerfile": "../app/Dockerfile"
     },
 
     //Mapeia a porta do contêiner para a  máquina local, 
