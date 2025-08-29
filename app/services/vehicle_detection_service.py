@@ -6,27 +6,24 @@ class VehicleDectionService:
     def __init__(self):
         self._model = YOLO('yolov11n.pt')
         self._vehicles_ids = [2,3,5,6,7]
-        self._mot_tracker = Sort() 
         pass
 
-    """Detecta o veículo com base no frame, e atualiza o Mot Tracker"""
+    """Detecta o veículo com base no frame"""
     def detect_vehicles(self, frame):
      
      vehicles_predictions = self._model.predict(self, frame)
-
-     vehicles_detections = []
 
      vehicles_result = vehicles_predictions[0] 
 
      for results in vehicles_result.boxes.data.tolist():
          
-         detected_vehicle = DetectedVehicleModel.from_yolo_detection(results)
+         detected_vehicle = DetectedVehicleModel.from_yolo_detection(results, frame)
         
          if  detected_vehicle.class_id in self._vehicles_ids:
-
-            vehicles_detections.append(detected_vehicle.to_list())
       
-         return self._mot_tracker.update(np.asanyarray(vehicles_detections))
+            return detected_vehicle
+         
+         raise Exception("Veículo não encontrado!")
     
         
     

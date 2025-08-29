@@ -3,12 +3,13 @@ from typing import Optional, List
 from .bouding_box_model import BoudingBox
 
 class DetectedVehicleModel:
-    
+
     """Representa um carro detectado pelo YOLO"""
-    def __init__(self, bouding_box:BoudingBox, score, class_id):
+    def __init__(self, bouding_box:BoudingBox, score, class_id, frame):
         self.bouding_box = bouding_box
         self.score = score
         self.class_id = class_id
+        self.original_frame = frame
         pass
     
     """Retorna uma lista com os dados relevantes para o Mot tracker"""
@@ -18,7 +19,7 @@ class DetectedVehicleModel:
         
     """Retorna um objeto do DetectedVehicleModel com base na resposta da detecção do YOLO"""
     @classmethod
-    def from_yolo_detection(cls, detection_data: List[float]):
+    def from_yolo_detection(cls, detection_data: List[float], original_frame):
         x1, y1, x2, y2, score, class_id = detection_data
 
         try:
@@ -30,5 +31,6 @@ class DetectedVehicleModel:
         return cls(
             bouding_box = box,
             score = score,
-            class_id = int(class_id),      
+            class_id = int(class_id),    
+            frame = original_frame  
         )
