@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     gnupg2 \
+    libgl1  \
+    libglib2.0-0 \
     gpg-agent \
     --no-install-recommends
 
