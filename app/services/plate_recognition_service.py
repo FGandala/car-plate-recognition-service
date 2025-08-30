@@ -8,7 +8,7 @@ class PlateRecognitionService:
 
 
     """Detecta o veículo com base no frame, e atualiza o Mot Tracker"""
-    def detect_license_plate(self, frame):
+    def detect_license_plate(self, frame)->DetectedPlateModel:
       
       license_plates_prediciton = self._license_plate_detector.predict(frame)[0]
 

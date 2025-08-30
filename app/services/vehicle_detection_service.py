@@ -1,5 +1,4 @@
 from ultralytics import YOLO
-from sort.sort import *
 from app.models.domain.detected_vehicle_model import DetectedVehicleModel
 
 class VehicleDectionService:
