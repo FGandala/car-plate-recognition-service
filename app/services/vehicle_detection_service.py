@@ -6,7 +6,7 @@ logger = logging.getLogger(__name__)
 
 class VehicleDectionService:
     def __init__(self):
-        self._model = YOLO('yolo11n.pt')
+        self._model = YOLO('/app/models_ml/yolo11n.pt')
         self._vehicles_ids = [2,3,5,6,7]
         pass
 
