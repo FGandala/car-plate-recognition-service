@@ -6,7 +6,13 @@ class ByteToImageService:
         pass
 
     """Converte um frame para uma imagem"""
-    def frameToImageConveter(frame):
-        image_stream = io.BytesIO(frame)
-        return Image.open(image_stream)
-    
+    def frame_to_image_conveter(self,frame):
+        try:
+             image_stream = io.BytesIO(frame)
+             image = Image.open(image_stream)
+             image.load() 
+        
+             return image
+        except Exception as e:
+            print(f"ERRO: Falha ao converter bytes para imagem. Detalhes: {e}")
+        return None

@@ -12,6 +12,10 @@ class PlateRecognitionService:
       
       license_plates_prediciton = self._license_plate_detector.predict(frame)[0]
 
+      if(len(license_plates_prediciton) == 0):
+         
+         return None
+
       for results in license_plates_prediciton.boxes.data.tolist():
 
         detected_plate = DetectedPlateModel.from_yolo_detection(results)

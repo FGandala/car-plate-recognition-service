@@ -3,7 +3,7 @@ import easyocr
 
 
 class OCRService:
-    def __init__(self, image):
+    def __init__(self):
         self._cv2Color = cv2.COLOR_BGR2GRAY
         self._thresholding_type = cv2.THRESH_BINARY_INV
         self._thresh = 64
