@@ -35,14 +35,16 @@ async def websocket_reconize(websocket: WebSocket):
 
             
             image = image_converter.frame_to_image_conveter(image_bytes)
-            vehicle = vehicle_recognizer.detect_vehicles(image)
+            coco_detection = vehicle_recognizer.detect_vehicles(image)
 
-            if(vehicle != None):
-                license_plate = plate_recognizer.detect_license_plate(vehicle.original_frame)
+            if(coco_detection != None and coco_detection.is_vehicle):
+
+                license_plate = plate_recognizer.detect_license_plate(image)
 
                 if(license_plate != None):
                     license_plate_text =  ocr.process_license_plate(license_plate.cropped_image)
                     await websocket.send_json({"license_plate":license_plate_text})
+                    break
 
 
     #Caso haja uma disconexão informa o erro

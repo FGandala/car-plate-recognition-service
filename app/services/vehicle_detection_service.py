@@ -1,13 +1,12 @@
 from ultralytics import YOLO
 import logging
-from app.models.domain.detected_vehicle_model import DetectedVehicleModel
+from app.models.domain.coco_detection_model import CocoDetectionModel
 
 logger = logging.getLogger(__name__)
 
 class VehicleDectionService:
     def __init__(self):
         self._model = YOLO('/app/models_ml/yolo11n.pt')
-        self._vehicles_ids = [2,3,5,6,7]
         pass
 
     """Detecta o veículo com base no frame"""
@@ -24,13 +23,9 @@ class VehicleDectionService:
 
      for results in vehicles_result.boxes.data.tolist():
          
-         detected_vehicle = DetectedVehicleModel.from_yolo_detection(results, frame)
-        
-         if  detected_vehicle.class_id in self._vehicles_ids:
-
-            return detected_vehicle
+         coco_detection = CocoDetectionModel.from_yolo_detection(results, frame)
          
-         return None
+         return coco_detection
     
         
     
