@@ -2,12 +2,16 @@
 {
     "name": "car-plate-recognition-service - Dev Env",
 
+    "workspaceFolder": "/app",
 
-    "build": {
-        "dockerfile": "../Dockerfile"
-    },
 
-  
+    "dockerComposeFile": "../docker-compose.yml",
+
+    "service": "api",
+
+    "postCreateCommand": "git config --global credential.helper 'cache --timeout=3600'",
+
+
     //Mapeia a porta do contêiner para a  máquina local, 
     "forwardPorts": [8001],
     "portsAttributes": {
@@ -33,7 +37,7 @@
         }
     },
 
-    // Mapeia a pasta do seu projeto local para a pasta /app dentro do contêiner.
-    "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
-    "workspaceFolder": "/app"
+   "shutdownAction": "stopCompose",
+
+   
 }
