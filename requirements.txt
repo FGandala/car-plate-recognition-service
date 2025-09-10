@@ -4,3 +4,6 @@ ultralytics
 opencv-python-headless
 python-multipart
 Pillow
+easyocr
+celery 
+pika
